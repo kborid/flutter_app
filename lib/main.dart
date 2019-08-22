@@ -1,76 +1,46 @@
 import 'package:flutter/material.dart';
 
+import 'widget/custom.dart';
+
 void main() => runApp(MyApp());
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
+  var titles = ["Homee", "Message", "Userr"];
+
+  @override
+  State createState() => CustomAppState();
+}
+
+class CustomAppState extends State<MyApp> {
+  int _currentIndex = 0;
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
-          title: Text('Flutter'),
+          title: Text(widget.titles[_currentIndex]),
           centerTitle: true,
         ),
-        body: Column(
-          mainAxisSize: MainAxisSize.max,
-          children: <Widget>[
-            Container(
-              height: 100,
-              color: Colors.cyan,
-              child: CustomWidget(),
-            ),
-            Container(
-              color: Colors.amberAccent,
-              child: Row(
-                children: <Widget>[
-                  Column(
-                    children: <Widget>[
-                      Center(
-                        child: Text("Title"),
-                      ),
-                      Center(
-                        child: Text("summary"),
-                      )
-                    ]
-                  ),
-                  Padding(
-                    child: Icon(Icons.access_alarm, size: 15),
-                    padding: EdgeInsets.all(10),
-                  ),
-                  Text("100")
-                ],
-              ),
-            )
-          ],
-        ),
+        body: CustomWidget(_currentIndex),
+        bottomNavigationBar: BottomNavigationBar(
+            currentIndex: _currentIndex,
+            onTap: _onTap,
+            items: [
+              BottomNavigationBarItem(
+                  icon: Icon(Icons.home), title: Text(widget.titles[0])),
+              BottomNavigationBarItem(
+                  icon: Icon(Icons.message), title: Text(widget.titles[1])),
+              BottomNavigationBarItem(
+                  icon: Icon(Icons.person), title: Text(widget.titles[2]))
+            ]),
       ),
     );
   }
-}
 
-class CustomWidget extends StatefulWidget {
-
-  @override
-  State createState() => CustomWidgetState();
-}
-
-class CustomWidgetState extends State<CustomWidget> {
-
-  bool isPress = false;
-
-  void _handleTap() {
+  void _onTap(int value) {
     setState(() {
-      isPress = !isPress;
+      _currentIndex = value;
     });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return new GestureDetector(
-      onTap: _handleTap,
-      child: Center(
-        child: Text(isPress ? "Hello" : "Welcome"),
-      ),
-    );
   }
 }

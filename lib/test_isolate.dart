@@ -1,6 +1,3 @@
-import 'dart:async';
-import 'dart:isolate';
-
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
@@ -9,7 +6,8 @@ class MyAnimation extends StatefulWidget {
   _MyAnimationState createState() => _MyAnimationState();
 }
 
-class _MyAnimationState extends State<MyAnimation> with SingleTickerProviderStateMixin {
+class _MyAnimationState extends State<MyAnimation>
+    with SingleTickerProviderStateMixin {
   AnimationController _controller;
 
   @override
@@ -23,13 +21,12 @@ class _MyAnimationState extends State<MyAnimation> with SingleTickerProviderStat
     _controller.dispose();
     super.dispose();
   }
-  
+
   @override
   Widget build(BuildContext context) {
     return SizedBox();
   }
 }
-
 
 class SampleApp extends StatelessWidget {
   @override
@@ -96,7 +93,9 @@ class _SampleAppPageState extends State<SampleAppPage> {
       });
 
   Widget getRow(int i) {
-    return new Padding(padding: new EdgeInsets.all(10.0), child: new Text("Row ${widgets[i]["title"]}"));
+    return new Padding(
+        padding: new EdgeInsets.all(10.0),
+        child: new Text("Row ${widgets[i]["title"]}"));
   }
 
   loadData() async {
