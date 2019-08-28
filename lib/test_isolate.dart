@@ -58,11 +58,7 @@ class _SampleAppPageState extends State<SampleAppPage> {
   }
 
   showLoadingDialog() {
-    if (widgets.length == 0) {
-      return true;
-    }
-
-    return false;
+    return widgets.length == 0;
   }
 
   getBody() {
@@ -103,7 +99,6 @@ class _SampleAppPageState extends State<SampleAppPage> {
     http.Response response = await http.get(dataURL);
     setState(() {
       print(response.body);
-//      widgets = ;
     });
   }
 

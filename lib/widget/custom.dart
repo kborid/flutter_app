@@ -19,7 +19,7 @@ class CustomWidgetState extends State<CustomWidget> {
     return GestureDetector(
       onTap: _handleTap,
       child: Center(
-        child: Text(widget.text.toString()),
+        child: Text(widget.text),
       ),
     );
   }
