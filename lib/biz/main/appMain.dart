@@ -3,6 +3,7 @@ import 'package:flutter/widgets.dart';
 import 'package:image_picker/image_picker.dart';
 
 import 'myWork.dart';
+import 'quickApp.dart';
 
 class AppMainWidget extends StatefulWidget {
   @override
@@ -21,20 +22,16 @@ class AppMainState extends State<AppMainWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Container(
-        child: Column(
-          children: <Widget>[
-            /*我的工作*/
-            MyWorkWidget(),
-            /*test*/
-            _testWidget(),
-            _testWidget(),
-            _testWidget(),
-            _testWidget(),
-            /*轻应用*/
-          ],
-        ),
+    return Container(
+      child: Column(
+        children: <Widget>[
+          /*我的工作*/
+          MyWorkWidget(),
+          /*test*/
+//            _testWidget(),
+          /*轻应用*/
+          QuickAppWidget(),
+        ],
       ),
     );
   }
