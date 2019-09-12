@@ -28,7 +28,7 @@ class AppMainState extends State<AppMainWidget> {
           /*我的工作*/
           MyWorkWidget(),
           /*test*/
-//            _testWidget(),
+            _testWidget(),
           /*轻应用*/
           QuickAppWidget(),
         ],

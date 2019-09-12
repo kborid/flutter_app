@@ -26,17 +26,10 @@ class QuickAppState extends State<QuickAppWidget> {
           QuickAppInfo("测试应用2"),
           QuickAppInfo("测试应用3"),
           QuickAppInfo("测试应用4"),
-          QuickAppInfo("测试应用5"),
           QuickAppInfo("测试应用1"),
           QuickAppInfo("测试应用2"),
           QuickAppInfo("测试应用3"),
           QuickAppInfo("测试应用4"),
-          QuickAppInfo("测试应用5"),
-          QuickAppInfo("测试应用1"),
-          QuickAppInfo("测试应用2"),
-          QuickAppInfo("测试应用3"),
-          QuickAppInfo("测试应用4"),
-          QuickAppInfo("测试应用5"),
         ]);
       });
     });
@@ -60,11 +53,9 @@ class QuickAppState extends State<QuickAppWidget> {
 }
 
 class QuickAppItemWidget extends StatelessWidget {
-  QuickAppInfo _quickAppInfo;
+  final QuickAppInfo _quickAppInfo;
 
-  QuickAppItemWidget(QuickAppInfo info) {
-    this._quickAppInfo = info;
-  }
+  QuickAppItemWidget(this._quickAppInfo);
 
   @override
   Widget build(BuildContext context) {

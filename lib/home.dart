@@ -5,6 +5,7 @@ import 'biz/pojo/userInfo.dart';
 import 'biz/user/userMain.dart';
 import 'const/Const.dart';
 import 'widget/custom.dart';
+import 'widget/webViewWidget.dart';
 
 class MainWidget extends StatefulWidget {
   @override
@@ -66,6 +67,9 @@ class CustomAppState extends State<MainWidget> {
   Widget _switchWidget(int index) {
     Widget widget;
     switch (index) {
+      case 0:
+        widget = WebViewWidget();
+        break;
       case 2:
         widget = AppMainWidget();
         break;

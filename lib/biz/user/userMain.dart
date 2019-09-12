@@ -3,11 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
 class UserMainWidget extends StatelessWidget {
-  UserInfo _userInfo;
+  final UserInfo _userInfo;
 
-  UserMainWidget(UserInfo userInfo) {
-    this._userInfo = userInfo;
-  }
+  UserMainWidget(this._userInfo);
 
   @override
   Widget build(BuildContext context) {
