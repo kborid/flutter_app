@@ -1,9 +1,11 @@
 import 'dart:async';
 
+import 'package:FlutterTest/model/test_provider_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-
-import 'home.dart';
+import 'package:provider/provider.dart';
+import 'package:FlutterTest/page/home.dart';
+import 'package:http/http.dart' as http;
 
 class SplashWidget extends StatefulWidget {
   @override
@@ -27,6 +29,7 @@ class SplashState extends State<SplashWidget> {
   void initState() {
     super.initState();
     if (null == timer) timer = Timer(time, startNextPageTimer);
+    loadData();
   }
 
   @override
@@ -35,8 +38,16 @@ class SplashState extends State<SplashWidget> {
     if (null != timer) timer.cancel();
   }
 
+  loadData() async {
+    String dataURL = "https://jsonplaceholder.typicode.com/posts";
+    http.Response response = await http.get(dataURL);
+    print(response.body);
+  }
+
   @override
   Widget build(BuildContext context) {
+    print(">>>>> value = ${Provider.of<TestModel>(context).value}");
+
     return MaterialApp(
       home: Scaffold(
         body: Stack(
