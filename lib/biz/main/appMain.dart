@@ -1,8 +1,8 @@
+import 'package:FlutterTest/widget/customMainTitle.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:image_picker/image_picker.dart';
 
-import 'myWork.dart';
 import 'quickApp.dart';
 
 class AppMainWidget extends StatefulWidget {
@@ -25,10 +25,11 @@ class AppMainState extends State<AppMainWidget> {
     return Container(
       child: Column(
         children: <Widget>[
+          CommMainTitleWidget("应用中心"),
           /*我的工作*/
-          MyWorkWidget(),
+//          MyWorkWidget(),
           /*test*/
-            _testWidget(),
+//            _testWidget(),
           /*轻应用*/
           QuickAppWidget(),
         ],
@@ -36,6 +37,9 @@ class AppMainState extends State<AppMainWidget> {
     );
   }
 
+  /**
+   * 测试widget
+   */
   _testWidget() {
     return Container(
       child: Column(

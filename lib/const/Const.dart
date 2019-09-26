@@ -1,3 +1,3 @@
 class Const {
-  static const List titles = ["消息", "日程", "主页", "朋友", "我的"];
+  static const List titles = ["狱务公开", "亲属公开", "应用中心", "个人设置"];
 }

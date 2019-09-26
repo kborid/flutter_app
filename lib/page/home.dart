@@ -17,10 +17,6 @@ class CustomAppState extends State<MainWidget> {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        appBar: AppBar(
-          title: Text(Const.titles[_currentIndex]),
-          centerTitle: true,
-        ),
         body: _switchWidget(_currentIndex),
         bottomNavigationBar: BottomNavigationBar(
             type: BottomNavigationBarType.fixed,
@@ -43,12 +39,8 @@ class CustomAppState extends State<MainWidget> {
                 title: Text(Const.titles[2]),
               ),
               BottomNavigationBarItem(
-                icon: Icon(Icons.contact_phone),
-                title: Text(Const.titles[3]),
-              ),
-              BottomNavigationBarItem(
                 icon: Icon(Icons.person),
-                title: Text(Const.titles[4]),
+                title: Text(Const.titles[3]),
               ),
             ]),
       ),
@@ -68,7 +60,7 @@ class CustomAppState extends State<MainWidget> {
       case 2:
         widget = AppMainWidget();
         break;
-      case 4:
+      case 3:
         widget = UserMainWidget(
             new UserInfo("测试者", "testId", "测试单位", "男", "1234567890"));
         break;
