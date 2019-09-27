@@ -1,16 +1,20 @@
-import 'package:FlutterTest/biz/main/appMain.dart';
-import 'package:FlutterTest/biz/pojo/userInfo.dart';
-import 'package:FlutterTest/biz/user/userMain.dart';
 import 'package:FlutterTest/const/Const.dart';
-import 'package:FlutterTest/widget/custom.dart';
+import 'package:FlutterTest/page/main/appMainPage.dart';
+import 'package:FlutterTest/page/user/userMainPage.dart';
+import 'package:FlutterTest/pojo/userInfo.dart';
+import 'package:FlutterTest/widget/CustomPage.dart';
 import 'package:flutter/material.dart';
 
-class MainWidget extends StatefulWidget {
+class HomePage extends StatefulWidget {
   @override
   State createState() => CustomAppState();
 }
 
-class CustomAppState extends State<MainWidget> {
+class CustomAppState extends State<HomePage> {
+  CustomPage _customPage;
+  AppMainPage _appMainPage;
+  UserMainPage _userMainPage;
+
   int _currentIndex = 2;
 
   @override
@@ -58,14 +62,20 @@ class CustomAppState extends State<MainWidget> {
     Widget widget;
     switch (index) {
       case 2:
-        widget = AppMainWidget();
+        if (null == _appMainPage) {
+          _appMainPage = AppMainPage();
+        }
+        widget = _appMainPage;
         break;
       case 3:
-        widget = UserMainWidget(
-            new UserInfo("测试者", "testId", "测试单位", "男", "1234567890"));
+        if (null == _userMainPage) {
+          _userMainPage = UserMainPage(
+              new UserInfo("测试", "test", "测试单位", "男", "1234567890"));
+        }
+        widget = _userMainPage;
         break;
       default:
-        widget = CustomWidget(Const.titles[_currentIndex]);
+        widget = CustomPage(Const.titles[_currentIndex]);
         break;
     }
     return widget;

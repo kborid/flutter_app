@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_webview_plugin/flutter_webview_plugin.dart';
 import 'package:http/http.dart' as http;
 
-class WebViewWidget extends StatefulWidget {
+class WebViewPage extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
     return WebViewWidgetState();
   }
 }
 
-class WebViewWidgetState extends State<WebViewWidget>
+class WebViewWidgetState extends State<WebViewPage>
     with SingleTickerProviderStateMixin {
   FlutterWebviewPlugin flutterWebViewPlugin = FlutterWebviewPlugin();
 

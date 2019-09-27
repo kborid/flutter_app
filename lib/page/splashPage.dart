@@ -1,27 +1,25 @@
 import 'dart:async';
 
-import 'package:FlutterTest/model/test_provider_model.dart';
+import 'package:FlutterTest/test/test_provider_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
-import 'package:FlutterTest/page/home.dart';
+import 'package:FlutterTest/page/homePage.dart';
 import 'package:http/http.dart' as http;
 
-class SplashWidget extends StatefulWidget {
+class SplashPage extends StatefulWidget {
   @override
-  State createState() {
-    return SplashState();
-  }
+  State createState() => SplashState();
 }
 
-class SplashState extends State<SplashWidget> {
+class SplashState extends State<SplashPage> {
   static const time = const Duration(seconds: 2);
   Timer timer;
 
   startNextPageTimer() {
     print("startNextpageTimer()");
     Navigator.of(context).pushAndRemoveUntil(
-        MaterialPageRoute(builder: (BuildContext context) => MainWidget()),
+        MaterialPageRoute(builder: (BuildContext context) => HomePage()),
         (Route route) => route == null);
   }
 

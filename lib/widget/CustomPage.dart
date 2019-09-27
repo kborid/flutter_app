@@ -1,17 +1,17 @@
 import 'package:flutter/cupertino.dart';
 
-class CustomWidget extends StatefulWidget {
+class CustomPage extends StatefulWidget {
   var text;
 
   @override
   State createState() => CustomWidgetState();
 
-  CustomWidget(var text) {
+  CustomPage(var text) {
     this.text = text;
   }
 }
 
-class CustomWidgetState extends State<CustomWidget> {
+class CustomWidgetState extends State<CustomPage> {
   void _handleTap() {}
 
   @override

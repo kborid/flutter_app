@@ -1,18 +1,27 @@
-import 'package:FlutterTest/biz/pojo/userInfo.dart';
-import 'package:FlutterTest/biz/user/user_info_widget.dart';
+import 'package:FlutterTest/page/user/userInfoWidget.dart';
+import 'package:FlutterTest/pojo/userInfo.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
-class UserMainWidget extends StatefulWidget {
+class UserMainPage extends StatefulWidget {
   final UserInfo _userInfo;
 
-  UserMainWidget(this._userInfo);
+  UserMainPage(this._userInfo);
 
   @override
   State createState() => UserMainState();
 }
 
-class UserMainState extends State<UserMainWidget> {
+class UserMainState extends State<UserMainPage> {
+
+  UserInfoListWidget _userInfoListWidget;
+
+  @override
+  void initState() {
+    super.initState();
+    _userInfoListWidget = UserInfoListWidget(widget._userInfo);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -51,7 +60,7 @@ class UserMainState extends State<UserMainWidget> {
           ),
         ),
         Container(
-          child: UserInfoListWidget(widget._userInfo),
+          child: _userInfoListWidget,
           color: Colors.white,
         ),
       ],
