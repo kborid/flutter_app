@@ -11,7 +11,6 @@ class HomePage extends StatefulWidget {
 }
 
 class CustomAppState extends State<HomePage> {
-  CustomPage _customPage;
   AppMainPage _appMainPage;
   UserMainPage _userMainPage;
 
@@ -31,15 +30,15 @@ class CustomAppState extends State<HomePage> {
             onTap: _onTap,
             items: [
               BottomNavigationBarItem(
-                icon: Icon(Icons.message),
+                icon: Icon(Icons.public),
                 title: Text(Const.titles[0]),
               ),
               BottomNavigationBarItem(
-                icon: Icon(Icons.schedule),
+                icon: Icon(Icons.phonelink),
                 title: Text(Const.titles[1]),
               ),
               BottomNavigationBarItem(
-                icon: Icon(Icons.home),
+                icon: Icon(Icons.apps),
                 title: Text(Const.titles[2]),
               ),
               BottomNavigationBarItem(
@@ -59,25 +58,20 @@ class CustomAppState extends State<HomePage> {
   }
 
   Widget _switchWidget(int index) {
-    Widget widget;
     switch (index) {
       case 2:
         if (null == _appMainPage) {
           _appMainPage = AppMainPage();
         }
-        widget = _appMainPage;
-        break;
+        return _appMainPage;
       case 3:
         if (null == _userMainPage) {
           _userMainPage = UserMainPage(
               new UserInfo("测试", "test", "测试单位", "男", "1234567890"));
         }
-        widget = _userMainPage;
-        break;
+        return _userMainPage;
       default:
-        widget = CustomPage(Const.titles[_currentIndex]);
-        break;
+        return CustomPage(Const.titles[_currentIndex]);
     }
-    return widget;
   }
 }

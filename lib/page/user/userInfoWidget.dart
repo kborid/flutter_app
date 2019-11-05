@@ -12,6 +12,7 @@ class UserInfoListWidget extends StatefulWidget {
 
 class _UserInfoListWidgetState extends State<UserInfoListWidget> {
   var _bind = false;
+
   @override
   Widget build(BuildContext context) {
     return Column(

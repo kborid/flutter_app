@@ -26,34 +26,7 @@ class AppMainState extends State<AppMainPage> {
       child: Column(
         children: <Widget>[
           CommMainTitleWidget("应用中心"),
-          /*我的工作*/
-//          MyWorkWidget(),
-          /*test*/
-//            _testWidget(),
-          /*轻应用*/
           QuickAppWidget(),
-        ],
-      ),
-    );
-  }
-
-  /**
-   * 测试widget
-   */
-  _testWidget() {
-    return Container(
-      child: Column(
-        children: <Widget>[
-          Center(
-            child: ClipOval(
-              child: Image.network(
-                "http://pic32.nipic.com/20130813/3347542_160503703000_2.jpg",
-                fit: BoxFit.cover,
-                width: 200,
-                height: 200,
-              ),
-            ),
-          ),
         ],
       ),
     );

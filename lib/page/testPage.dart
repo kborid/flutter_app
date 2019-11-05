@@ -1,0 +1,97 @@
+import 'package:FlutterTest/page/homePage.dart';
+import 'package:flutter/material.dart';
+
+class TestPage extends StatefulWidget {
+  var showColor = Colors.red;
+  var showText = "请点击按钮";
+
+  @override
+  _TestPageState createState() => _TestPageState();
+}
+
+class _TestPageState extends State<TestPage> {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text("测试页面"),
+          leading: GestureDetector(
+            child: Icon(Icons.arrow_back),
+            onTap: _backClick,
+          ),
+        ),
+        body: Column(
+          children: <Widget>[
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+//              crossAxisAlignment: CrossAxisAlignment.center,
+              children: <Widget>[
+                RaisedButton(
+                  onPressed: () {
+                    _btnClickEvent("点击红色按钮", Colors.red);
+                  },
+                  color: Colors.red,
+                  child: Text('红色按钮'),
+                ),
+                Flexible(
+                  flex: 1,
+                  child: RaisedButton(
+                    onPressed: () {
+                      _btnClickEvent("点击黄色按钮", Colors.yellow);
+                    },
+                    color: Colors.yellow,
+                    child: Text('黄色按钮'),
+                  ),
+                ),
+                RaisedButton(
+                  onPressed: () {
+                    _btnClickEvent("点击绿色按钮", Colors.green);
+                  },
+                  color: Colors.green,
+                  child: Text('绿色按钮'),
+                ),
+              ],
+            ),
+            Expanded(
+              child: Column(
+                children: <Widget>[
+                  Container(
+                    height: 150,
+                    child: Center(
+                      child: Text(
+                        widget.showText,
+                        style: TextStyle(fontSize: 50, color: widget.showColor),
+                      ),
+                    ),
+                  ),
+                  FlutterLogo(
+                    size: 60,
+                    curve: Curves.elasticInOut,
+                  )
+                ],
+              ),
+            )
+          ],
+        ),
+      ),
+    );
+  }
+
+  _btnClickEvent(text, color) {
+    setState(() {
+      widget.showText = text;
+      widget.showColor = color;
+    });
+    Future.delayed(
+        Duration(microseconds: 200),
+        () => {
+              Navigator.of(context).push(MaterialPageRoute(
+                  builder: (BuildContext context) => HomePage()))
+            });
+  }
+
+  _backClick() {
+    print("back click");
+  }
+}

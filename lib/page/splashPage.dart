@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:FlutterTest/page/testPage.dart';
 import 'package:FlutterTest/test/test_provider_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -14,32 +15,33 @@ class SplashPage extends StatefulWidget {
 
 class SplashState extends State<SplashPage> {
   static const time = const Duration(seconds: 2);
-  Timer timer;
+//  Timer timer;
 
   startNextPageTimer() {
     print("startNextpageTimer()");
     Navigator.of(context).pushAndRemoveUntil(
-        MaterialPageRoute(builder: (BuildContext context) => HomePage()),
+        MaterialPageRoute(builder: (BuildContext context) => TestPage()),
         (Route route) => route == null);
   }
 
   @override
   void initState() {
     super.initState();
-    if (null == timer) timer = Timer(time, startNextPageTimer);
-    loadData();
+//    if (null == timer) timer = Timer(time, startNextPageTimer);
+    Future.delayed(time, startNextPageTimer);
+//    loadData();
   }
 
   @override
   void dispose() {
     super.dispose();
-    if (null != timer) timer.cancel();
+//    if (null != timer) timer.cancel();
   }
 
   loadData() async {
     String dataURL = "https://jsonplaceholder.typicode.com/posts";
     http.Response response = await http.get(dataURL);
-    print(response.body);
+    print(response.toString());
   }
 
   @override
@@ -52,7 +54,7 @@ class SplashState extends State<SplashPage> {
           fit: StackFit.expand,
           children: <Widget>[
             Image.asset(
-              "images/login_bg.png",
+              "images/ic_bg.png",
               fit: BoxFit.cover,
             ),
             Column(

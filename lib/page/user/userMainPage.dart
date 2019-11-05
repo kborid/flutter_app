@@ -13,7 +13,6 @@ class UserMainPage extends StatefulWidget {
 }
 
 class UserMainState extends State<UserMainPage> {
-
   UserInfoListWidget _userInfoListWidget;
 
   @override
@@ -27,36 +26,41 @@ class UserMainState extends State<UserMainPage> {
     return Column(
       children: <Widget>[
         Container(
-          color: Colors.blue[500],
-          child: Stack(
-            children: <Widget>[
-              Center(
-                child: Padding(
-                  padding: EdgeInsets.all(80),
-                  child: DecoratedBox(
-                    decoration: BoxDecoration(
-                      shape: BoxShape.rectangle,
-                      boxShadow: [
-                        BoxShadow(color: Colors.blue[800], blurRadius: 30),
-                      ],
-                      borderRadius: BorderRadius.circular(50),
-                    ),
-                    child: ClipOval(
-                      child: Image.network(
-                        "http://pic32.nipic.com/20130813/3347542_160503703000_2.jpg",
-                        fit: BoxFit.cover,
-                        width: 100,
-                        height: 100,
+          color: Colors.blue,
+          child: Padding(
+            padding: EdgeInsets.all(35),
+            child: Column(
+              children: <Widget>[
+                Center(
+                  child: Padding(
+                    padding: EdgeInsets.all(30),
+                    child: DecoratedBox(
+                      decoration: BoxDecoration(
+                        shape: BoxShape.rectangle,
+                        boxShadow: [
+                          BoxShadow(color: Colors.blue[800], blurRadius: 30),
+                        ],
+                        borderRadius: BorderRadius.circular(50),
+                      ),
+                      child: ClipOval(
+                        child: Image.network(
+                          "http://pic32.nipic.com/20130813/3347542_160503703000_2.jpg",
+                          fit: BoxFit.cover,
+                          width: 100,
+                          height: 100,
+                        ),
                       ),
                     ),
                   ),
                 ),
-              ),
-              Text(
-                "石头",
-                style: TextStyle(fontSize: 20, color: Colors.white),
-              )
-            ],
+                Center(
+                  child: Text(
+                    widget._userInfo.name,
+                    style: TextStyle(fontSize: 20, color: Colors.white),
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
         Container(

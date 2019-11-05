@@ -10,30 +10,12 @@ class QuickAppWidget extends StatefulWidget {
 }
 
 class QuickAppState extends State<QuickAppWidget> {
-  List<QuickAppInfo> apps = [];
-
-  @override
-  void initState() {
-    super.initState();
-    _retrieveIcons();
-  }
-
-  void _retrieveIcons() {
-    Future.delayed(Duration(milliseconds: 200)).then((e) {
-      setState(() {
-        apps.addAll([
-          QuickAppInfo("测试应用1"),
-          QuickAppInfo("测试应用2"),
-          QuickAppInfo("测试应用3"),
-          QuickAppInfo("测试应用4"),
-          QuickAppInfo("测试应用1"),
-          QuickAppInfo("测试应用2"),
-          QuickAppInfo("测试应用3"),
-          QuickAppInfo("测试应用4"),
-        ]);
-      });
-    });
-  }
+  List<QuickAppInfo> apps = [
+    QuickAppInfo("测试应用1"),
+    QuickAppInfo("测试应用2"),
+    QuickAppInfo("测试应用3"),
+    QuickAppInfo("测试应用4"),
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -45,48 +27,43 @@ class QuickAppState extends State<QuickAppWidget> {
         ),
         itemCount: apps.length,
         itemBuilder: (context, index) {
-          return QuickAppItemWidget(apps[index]);
+          return _buildItemWidget(context, apps[index]);
         },
       ),
     );
   }
 }
 
-class QuickAppItemWidget extends StatelessWidget {
-  final QuickAppInfo _quickAppInfo;
-
-  QuickAppItemWidget(this._quickAppInfo);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      child: GestureDetector(
-        onTap: _changeScreen(),
-        child: Column(
-          children: <Widget>[
-            Center(
-              child: Padding(
-                padding: EdgeInsets.all(10),
-                child: ClipOval(
-                  child: Image.network(
-                    _quickAppInfo.iconUrl,
-                    fit: BoxFit.cover,
-                    width: 70,
-                    height: 70,
-                  ),
+_buildItemWidget(context, app) {
+  return GestureDetector(
+    onTap: _changeScreen(context, app),
+    child: Container(
+      child: Column(
+        children: <Widget>[
+          Center(
+            child: Padding(
+              padding: EdgeInsets.all(10),
+              child: ClipOval(
+                child: Image.network(
+                  app.iconUrl,
+                  fit: BoxFit.cover,
+                  width: 70,
+                  height: 70,
                 ),
               ),
             ),
-            Center(
-              child: Text(_quickAppInfo.name),
-            )
-          ],
-        ),
+          ),
+          Center(
+            child: Text(app.name),
+          )
+        ],
       ),
-    );
-  }
+    ),
+  );
+}
 
-  _changeScreen() {
-    print(_quickAppInfo.toString());
-  }
+_changeScreen(context, app) {
+  print(app.toString());
+//    Navigator.push(context,
+//        MaterialPageRoute(builder: (BuildContext context) => WebViewPage()));
 }
