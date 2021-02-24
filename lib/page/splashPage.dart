@@ -2,10 +2,11 @@ import 'dart:async';
 
 import 'package:FlutterTest/page/testPage.dart';
 import 'package:FlutterTest/test/test_provider_model.dart';
+import 'package:dio/dio.dart';
+import 'package:flustars/flustars.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
-import 'package:FlutterTest/page/homePage.dart';
 import 'package:http/http.dart' as http;
 
 class SplashPage extends StatefulWidget {
@@ -14,6 +15,7 @@ class SplashPage extends StatefulWidget {
 }
 
 class SplashState extends State<SplashPage> {
+  static const url = "https://jsonplaceholder.typicode.com/posts";
   static const time = const Duration(seconds: 2);
 //  Timer timer;
 
@@ -27,9 +29,11 @@ class SplashState extends State<SplashPage> {
   @override
   void initState() {
     super.initState();
+    LogUtil.init(isDebug: true, tag: "xx");
 //    if (null == timer) timer = Timer(time, startNextPageTimer);
     Future.delayed(time, startNextPageTimer);
 //    loadData();
+    loadDataDio();
   }
 
   @override
@@ -39,14 +43,20 @@ class SplashState extends State<SplashPage> {
   }
 
   loadData() async {
-    String dataURL = "https://jsonplaceholder.typicode.com/posts";
-    http.Response response = await http.get(dataURL);
-    print(response.toString());
+    var response = await http.Client().get(url);
+    print(response.body.toString());
+  }
+
+  loadDataDio() async {
+    var response = await new Dio().get(url);
+//    print(response.toString());
+    LogUtil.v("res:${response.toString()}", tag: "xx");
   }
 
   @override
   Widget build(BuildContext context) {
-    print(">>>>> value = ${Provider.of<TestModel>(context).value}");
+    var tt = Provider.of<TestModel>(context).value;
+    print(">>>>> value = $tt");
 
     return MaterialApp(
       home: Scaffold(

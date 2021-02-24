@@ -101,6 +101,6 @@ class WebViewWidgetState extends State<WebViewPage>
   }
 
   void handleJs() {
-    flutterWebViewPlugin.evalJavascript("abc(${title}')").then((result) {});
+    flutterWebViewPlugin.evalJavascript("abc($title)").then((result) {});
   }
 }

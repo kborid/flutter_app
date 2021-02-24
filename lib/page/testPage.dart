@@ -1,9 +1,13 @@
+import 'dart:async';
+
 import 'package:FlutterTest/page/homePage.dart';
 import 'package:flutter/material.dart';
+// import 'package:flutter_test_plugin/test_plugin.dart';
 
 class TestPage extends StatefulWidget {
   var showColor = Colors.red;
   var showText = "请点击按钮";
+  var _platformVersion = "unknown";
 
   @override
   _TestPageState createState() => _TestPageState();
@@ -11,11 +15,40 @@ class TestPage extends StatefulWidget {
 
 class _TestPageState extends State<TestPage> {
   @override
+  void initState() {
+    super.initState();
+    Future.delayed(Duration(seconds: 2), initPlatformState);
+  }
+
+  // Platform messages are asynchronous, so we initialize in an async method.
+  Future<void> initPlatformState() async {
+    // TestPlugin.test;
+
+    String platformVersion = 'unknow~~';
+    // Platform messages may fail, so we use a try/catch PlatformException.
+    // try {
+    //   platformVersion = await /*FlutterTestPlugin.platformVersion*/ TestPlugin
+    //       .platformVersion;
+    // } on PlatformException {
+    //   platformVersion = 'Failed to get platform version.';
+    // }
+
+    // If the widget was removed from the tree while the asynchronous platform
+    // message was in flight, we want to discard the reply rather than calling
+    // setState to update our non-existent appearance.
+    if (!mounted) return;
+
+    setState(() {
+      widget._platformVersion = platformVersion;
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
-          title: Text("测试页面"),
+          title: Text(widget._platformVersion),
           leading: GestureDetector(
             child: Icon(Icons.arrow_back),
             onTap: _backClick,

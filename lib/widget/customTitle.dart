@@ -21,7 +21,7 @@ class CommTitleWidget extends StatelessWidget {
             width: 50,
             height: 50,
             child: GestureDetector(
-              onTap: _right,
+              onTap: _back(),
               child: Icon(
                 Icons.arrow_back,
                 color: Colors.white,
@@ -43,7 +43,7 @@ class CommTitleWidget extends StatelessWidget {
             width: 50,
             height: 50,
             child: GestureDetector(
-              onTap: _right,
+              onTap: _right(),
               child: Icon(
                 Icons.menu,
                 color: Colors.white,

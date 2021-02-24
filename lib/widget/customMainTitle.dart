@@ -32,12 +32,4 @@ class CommMainTitleWidget extends StatelessWidget {
       ),
     );
   }
-
-  _back() {
-    print('back');
-  }
-
-  _right() {
-    print('right');
-  }
 }

@@ -31,19 +31,19 @@ class CustomAppState extends State<HomePage> {
             items: [
               BottomNavigationBarItem(
                 icon: Icon(Icons.public),
-                title: Text(Const.titles[0]),
+                label: Const.titles[0],
               ),
               BottomNavigationBarItem(
                 icon: Icon(Icons.phonelink),
-                title: Text(Const.titles[1]),
+                label: Const.titles[1],
               ),
               BottomNavigationBarItem(
                 icon: Icon(Icons.apps),
-                title: Text(Const.titles[2]),
+                label: Const.titles[2],
               ),
               BottomNavigationBarItem(
                 icon: Icon(Icons.person),
-                title: Text(Const.titles[3]),
+                label: Const.titles[3],
               ),
             ]),
       ),

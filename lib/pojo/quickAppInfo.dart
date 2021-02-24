@@ -15,19 +15,7 @@ class QuickAppInfo {
 
   get targetUrl => _targetUrl;
 
-  set targetUrl(value) {
-    _targetUrl = value;
-  }
-
   get iconUrl => _iconUrl;
 
-  set iconUrl(value) {
-    _iconUrl = value;
-  }
-
   get name => _name;
-
-  set name(value) {
-    _name = value;
-  }
 }

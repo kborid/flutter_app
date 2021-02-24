@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
 //          child: SplashWidget(),
 //        ),
         body: ChangeNotifierProvider<TestModel>(
-          builder: (context) => TestModel(100),
+          create: (context) => TestModel(100),
           child: SplashPage(),
         ),
       ),
