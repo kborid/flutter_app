@@ -1,4 +1,4 @@
-import 'package:FlutterTest/pojo/userInfo.dart';
+import 'package:FlutterTest/pojo/user_info.dart';
 import 'package:flutter/material.dart';
 
 class UserInfoListWidget extends StatefulWidget {

@@ -1,8 +1,8 @@
-import 'package:FlutterTest/const/Const.dart';
-import 'package:FlutterTest/page/main/appMainPage.dart';
-import 'package:FlutterTest/page/user/userMainPage.dart';
-import 'package:FlutterTest/pojo/userInfo.dart';
-import 'package:FlutterTest/widget/CustomPage.dart';
+import 'package:FlutterTest/const/const.dart';
+import 'package:FlutterTest/page/main/app_main_page.dart';
+import 'package:FlutterTest/page/user/user_main_page.dart';
+import 'package:FlutterTest/pojo/user_info.dart';
+import 'package:FlutterTest/widget/custom_page.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {

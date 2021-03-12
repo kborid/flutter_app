@@ -1,5 +1,5 @@
-import 'package:FlutterTest/page/user/userInfoWidget.dart';
-import 'package:FlutterTest/pojo/userInfo.dart';
+import 'package:FlutterTest/page/user/user_info_widget.dart';
+import 'package:FlutterTest/pojo/user_info.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 

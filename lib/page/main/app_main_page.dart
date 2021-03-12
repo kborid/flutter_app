@@ -1,9 +1,9 @@
-import 'package:FlutterTest/widget/customMainTitle.dart';
+import 'package:FlutterTest/widget/comm_widget_main_title.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:image_picker/image_picker.dart';
 
-import 'quickApp.dart';
+import 'quick_app_widget.dart';
 
 class AppMainPage extends StatefulWidget {
   @override
