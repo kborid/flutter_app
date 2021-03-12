@@ -41,6 +41,20 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
+    flavorDimensions "app"
+
+    productFlavors {
+        dev {
+            dimension 'app'
+            resValue "string", "app_name", "MyFlutter_DEV"
+        }
+        prod {
+            dimension 'app'
+            resValue "string", "app_name", "MyFlutter_PROD"
+        }
+
+    }
+
     buildTypes {
         release {
             // TODO: Add your own signing config for the release build.
