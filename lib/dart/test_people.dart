@@ -1,0 +1,26 @@
+import 'file:///D:/workspace/flt/demo/myflutter/lib/dart/test_abstract_people.dart';
+
+class TestPeople with People {
+  @override
+  void say() {
+    super.say();
+    print("test say()");
+  }
+
+  @override
+  void walk() {}
+
+  @override
+  void eat() {}
+
+  @override
+  noSuchMethod(Invocation invocation) {
+    // TODO: implement noSuchMethod
+    return super.noSuchMethod(invocation);
+  }
+
+  void main() {
+    TestPeople testPeople = new TestPeople();
+    testPeople.say();
+  }
+}
