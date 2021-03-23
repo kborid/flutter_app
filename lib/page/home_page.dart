@@ -1,8 +1,8 @@
-import 'package:FlutterTest/const/const.dart';
-import 'package:FlutterTest/page/main/app_main_page.dart';
-import 'package:FlutterTest/page/user/user_main_page.dart';
-import 'package:FlutterTest/pojo/user_info.dart';
-import 'package:FlutterTest/widget/custom_page.dart';
+import 'package:kborid_flutter/const/const.dart';
+import 'package:kborid_flutter/page/main/app_main_page.dart';
+import 'package:kborid_flutter/page/user/user_main_page.dart';
+import 'package:kborid_flutter/pojo/user_info.dart';
+import 'package:kborid_flutter/widget/custom_page.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
@@ -18,36 +18,33 @@ class CustomAppState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-        body: _switchWidget(_currentIndex),
-        bottomNavigationBar: BottomNavigationBar(
-            type: BottomNavigationBarType.fixed,
-            currentIndex: _currentIndex,
-            iconSize: 20,
-            selectedFontSize: 12,
-            unselectedFontSize: 10,
-            onTap: _onTap,
-            items: [
-              BottomNavigationBarItem(
-                icon: Icon(Icons.public),
-                label: Const.titles[0],
-              ),
-              BottomNavigationBarItem(
-                icon: Icon(Icons.phonelink),
-                label: Const.titles[1],
-              ),
-              BottomNavigationBarItem(
-                icon: Icon(Icons.apps),
-                label: Const.titles[2],
-              ),
-              BottomNavigationBarItem(
-                icon: Icon(Icons.person),
-                label: Const.titles[3],
-              ),
-            ]),
-      ),
-      theme: ThemeData(),
+    return Scaffold(
+      body: _switchWidget(_currentIndex),
+      bottomNavigationBar: BottomNavigationBar(
+          type: BottomNavigationBarType.fixed,
+          currentIndex: _currentIndex,
+          iconSize: 20,
+          selectedFontSize: 12,
+          unselectedFontSize: 10,
+          onTap: _onTap,
+          items: [
+            BottomNavigationBarItem(
+              icon: Icon(Icons.public),
+              label: Const.titles[0],
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.phonelink),
+              label: Const.titles[1],
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.apps),
+              label: Const.titles[2],
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.person),
+              label: Const.titles[3],
+            ),
+          ]),
     );
   }
 

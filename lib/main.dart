@@ -1,15 +1,21 @@
-import 'package:flutter/material.dart';
-import 'package:FlutterTest/page/splash_page.dart';
+import 'dart:async';
 
-void main() => runApp(MyApp());
+import 'package:flutter/material.dart';
+import 'package:kborid_flutter/page/test_page.dart';
+
+void main() {
+  runZonedGuarded(() {
+    runApp(MyApp());
+  }, (error, stacktrace) {
+    print("occur error~~~ in runZonedGuarded()");
+  });
+}
 
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: Scaffold(
-        body: SplashPage(),
-      ),
+      home: TestPage(),
     );
   }
 }

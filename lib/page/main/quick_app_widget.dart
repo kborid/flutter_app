@@ -1,4 +1,4 @@
-import 'package:FlutterTest/pojo/quick_app_info.dart';
+import 'package:kborid_flutter/pojo/quick_app_info.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 

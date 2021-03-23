@@ -1,7 +1,5 @@
 import 'dart:io';
-
 import 'package:flutter/material.dart';
-
 import '../plugin/tt_plugin.dart';
 
 class HybridMainPage extends StatefulWidget {
@@ -21,32 +19,30 @@ class _HybridMainPageState extends State<HybridMainPage> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-        appBar: _buildAppBarWidget(),
-        body: Container(
-          child: Center(
-            child: Column(
-              mainAxisSize: MainAxisSize.max,
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: <Widget>[
-                Text(
-                  '我是Flutter TT',
-                  style: TextStyle(fontSize: 40),
+    return Scaffold(
+      appBar: _buildAppBarWidget(),
+      body: Container(
+        child: Center(
+          child: Column(
+            mainAxisSize: MainAxisSize.max,
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: <Widget>[
+              Text(
+                '我是Flutter TT',
+                style: TextStyle(fontSize: 40),
+              ),
+              GestureDetector(
+                child: FlutterLogo(
+                  size: 50,
                 ),
-                GestureDetector(
-                  child: FlutterLogo(
-                    size: 50,
-                  ),
-                  onTap: _tap,
-                ),
-                Text(
-                  _buildOSVersion(platform),
-                  style: TextStyle(fontSize: 50),
-                ),
-              ],
-            ),
+                onTap: _tap,
+              ),
+              Text(
+                _buildOSVersion(platform),
+                style: TextStyle(fontSize: 50),
+              ),
+            ],
           ),
         ),
       ),

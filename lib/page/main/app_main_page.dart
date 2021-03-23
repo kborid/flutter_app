@@ -1,4 +1,4 @@
-import 'package:FlutterTest/widget/comm_widget_main_title.dart';
+import 'package:kborid_flutter/widget/comm_widget_main_title.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:image_picker/image_picker.dart';

@@ -1,5 +1,5 @@
-import 'package:FlutterTest/page/user/user_info_widget.dart';
-import 'package:FlutterTest/pojo/user_info.dart';
+import 'package:kborid_flutter/page/user/user_info_widget.dart';
+import 'package:kborid_flutter/pojo/user_info.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 

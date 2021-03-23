@@ -1,8 +1,9 @@
 import 'dart:async';
 
-import 'package:FlutterTest/page/home_page.dart';
+import 'package:kborid_flutter/page/home_page.dart';
 import 'package:flutter/material.dart';
-// import 'package:flutter_test_plugin/test_plugin.dart';
+import 'package:dio/dio.dart';
+import 'package:http/http.dart' as http;
 
 class TestPage extends StatefulWidget {
   var showColor = Colors.red;
@@ -14,10 +15,24 @@ class TestPage extends StatefulWidget {
 }
 
 class _TestPageState extends State<TestPage> {
+  static const url = "https://jsonplaceholder.typicode.com/posts";
+
   @override
   void initState() {
     super.initState();
     Future.delayed(Duration(seconds: 2), initPlatformState);
+    loadData();
+    loadDataDio();
+  }
+
+  loadData() async {
+    var response = await http.Client().get(url);
+    print(response.body.toString());
+  }
+
+  loadDataDio() async {
+    var response = await new Dio().get(url);
+    print(response.data.toString());
   }
 
   // Platform messages are asynchronous, so we initialize in an async method.
@@ -45,68 +60,76 @@ class _TestPageState extends State<TestPage> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text(widget._platformVersion),
-          leading: GestureDetector(
-            child: Icon(Icons.arrow_back),
-            onTap: _backClick,
-          ),
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(widget._platformVersion),
+        leading: TextButton(
+          child: Icon(Icons.arrow_back),
+          onPressed: _backClick,
         ),
-        body: Column(
-          children: <Widget>[
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      ),
+      body: Column(
+        children: <Widget>[
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
 //              crossAxisAlignment: CrossAxisAlignment.center,
+            children: <Widget>[
+              ElevatedButton(
+                onPressed: () {
+                  _btnClickEvent("点击红色按钮", Colors.red);
+                },
+                style: ButtonStyle(
+                    textStyle:
+                        MaterialStateProperty.all(TextStyle(fontSize: 20)),
+                    backgroundColor: MaterialStateProperty.all(Colors.red)),
+                child: Text('红色按钮'),
+              ),
+              Flexible(
+                flex: 1,
+                child: ElevatedButton(
+                  onPressed: () {
+                    _btnClickEvent("点击黄色按钮", Colors.yellow);
+                  },
+                  style: ButtonStyle(
+                      textStyle:
+                          MaterialStateProperty.all(TextStyle(fontSize: 20)),
+                      backgroundColor:
+                          MaterialStateProperty.all(Colors.yellow)),
+                  child: Text('黄色按钮'),
+                ),
+              ),
+              ElevatedButton(
+                onPressed: () {
+                  _btnClickEvent("点击绿色按钮", Colors.green);
+                },
+                style: ButtonStyle(
+                    textStyle:
+                        MaterialStateProperty.all(TextStyle(fontSize: 20)),
+                    backgroundColor: MaterialStateProperty.all(Colors.green)),
+                child: Text('绿色按钮'),
+              ),
+            ],
+          ),
+          Expanded(
+            child: Column(
               children: <Widget>[
-                RaisedButton(
-                  onPressed: () {
-                    _btnClickEvent("点击红色按钮", Colors.red);
-                  },
-                  color: Colors.red,
-                  child: Text('红色按钮'),
-                ),
-                Flexible(
-                  flex: 1,
-                  child: RaisedButton(
-                    onPressed: () {
-                      _btnClickEvent("点击黄色按钮", Colors.yellow);
-                    },
-                    color: Colors.yellow,
-                    child: Text('黄色按钮'),
-                  ),
-                ),
-                RaisedButton(
-                  onPressed: () {
-                    _btnClickEvent("点击绿色按钮", Colors.green);
-                  },
-                  color: Colors.green,
-                  child: Text('绿色按钮'),
-                ),
-              ],
-            ),
-            Expanded(
-              child: Column(
-                children: <Widget>[
-                  Container(
-                    height: 150,
-                    child: Center(
-                      child: Text(
-                        widget.showText,
-                        style: TextStyle(fontSize: 50, color: widget.showColor),
-                      ),
+                Container(
+                  height: 150,
+                  child: Center(
+                    child: Text(
+                      widget.showText,
+                      style: TextStyle(fontSize: 50, color: widget.showColor),
                     ),
                   ),
-                  FlutterLogo(
-                    size: 60,
-                    curve: Curves.elasticInOut,
-                  )
-                ],
-              ),
-            )
-          ],
-        ),
+                ),
+                FlutterLogo(
+                  size: 60,
+                  curve: Curves.elasticInOut,
+                )
+              ],
+            ),
+          )
+        ],
       ),
     );
   }
