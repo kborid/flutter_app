@@ -4,12 +4,9 @@ import 'package:kborid_flutter/page/home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:dio/dio.dart';
 import 'package:http/http.dart' as http;
+import 'package:kborid_flutter/widget/widget_overlay.dart';
 
 class TestPage extends StatefulWidget {
-  var showColor = Colors.red;
-  var showText = "请点击按钮";
-  var _platformVersion = "unknown";
-
   @override
   _TestPageState createState() => _TestPageState();
 }
@@ -17,16 +14,27 @@ class TestPage extends StatefulWidget {
 class _TestPageState extends State<TestPage> {
   static const url = "https://jsonplaceholder.typicode.com/posts";
 
+  var showColor = Colors.red;
+  var showText = "请点击按钮";
+  var _platformVersion = "--";
+
   @override
   void initState() {
-    super.initState();
     Future.delayed(Duration(seconds: 2), initPlatformState);
     loadData();
     loadDataDio();
+    WidgetsBinding.instance.addPostFrameCallback(_buildCompleted);
+    super.initState();
+  }
+
+  _buildCompleted(Duration timeStamp) {
+    Overlay.of(context).insert(OverlayEntry(builder: (context) {
+      return OverlayWidget();
+    }));
   }
 
   loadData() async {
-    var response = await http.Client().get(url);
+    var response = await http.Client().get(Uri.parse(url));
     print(response.body.toString());
   }
 
@@ -39,7 +47,7 @@ class _TestPageState extends State<TestPage> {
   Future<void> initPlatformState() async {
     // TestPlugin.test;
 
-    String platformVersion = 'unknow~~';
+    String platformVersion = '~~~unknown~~';
     // Platform messages may fail, so we use a try/catch PlatformException.
     // try {
     //   platformVersion = await /*FlutterTestPlugin.platformVersion*/ TestPlugin
@@ -54,7 +62,7 @@ class _TestPageState extends State<TestPage> {
     if (!mounted) return;
 
     setState(() {
-      widget._platformVersion = platformVersion;
+      _platformVersion = platformVersion;
     });
   }
 
@@ -62,10 +70,13 @@ class _TestPageState extends State<TestPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget._platformVersion),
-        leading: TextButton(
-          child: Icon(Icons.arrow_back),
-          onPressed: _backClick,
+        title: Text(_platformVersion),
+        leading: Container(
+          child: ElevatedButton(
+            onPressed: (){},
+            style: ButtonStyle(backgroundColor: MaterialStateProperty.all(Colors.indigo)),
+            child: Icon(Icons.arrow_back),
+          ),
         ),
       ),
       body: Column(
@@ -117,8 +128,8 @@ class _TestPageState extends State<TestPage> {
                   height: 150,
                   child: Center(
                     child: Text(
-                      widget.showText,
-                      style: TextStyle(fontSize: 50, color: widget.showColor),
+                      showText,
+                      style: TextStyle(fontSize: 50, color: showColor),
                     ),
                   ),
                 ),
@@ -136,8 +147,8 @@ class _TestPageState extends State<TestPage> {
 
   _btnClickEvent(text, color) {
     setState(() {
-      widget.showText = text;
-      widget.showColor = color;
+      showText = text;
+      showColor = color;
     });
     Future.delayed(
         Duration(microseconds: 200),

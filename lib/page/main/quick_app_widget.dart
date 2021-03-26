@@ -1,3 +1,4 @@
+import 'package:kborid_flutter/page/webview_page.dart';
 import 'package:kborid_flutter/pojo/quick_app_info.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -15,6 +16,8 @@ class QuickAppState extends State<QuickAppWidget> {
     QuickAppInfo("测试应用2"),
     QuickAppInfo("测试应用3"),
     QuickAppInfo("测试应用4"),
+    QuickAppInfo("测试应用5"),
+    QuickAppInfo("测试应用6"),
   ];
 
   @override
@@ -27,28 +30,37 @@ class QuickAppState extends State<QuickAppWidget> {
         ),
         itemCount: apps.length,
         itemBuilder: (context, index) {
-          return _buildItemWidget(context, apps[index]);
+          return _buildItemWidget(apps[index]);
         },
       ),
     );
   }
-}
 
-_buildItemWidget(context, app) {
-  return GestureDetector(
-    onTap: _changeScreen(context, app),
-    child: Container(
+  _buildItemWidget(app) {
+    return GestureDetector(
+      onTap: () {
+        _changeScreen(app);
+      },
       child: Column(
         children: <Widget>[
           Center(
             child: Padding(
               padding: EdgeInsets.all(10),
-              child: ClipOval(
-                child: Image.network(
-                  app.iconUrl,
-                  fit: BoxFit.cover,
-                  width: 70,
-                  height: 70,
+              child: DecoratedBox(
+                decoration: BoxDecoration(
+                  shape: BoxShape.rectangle,
+                  boxShadow: [
+                    BoxShadow(color: Colors.grey[400], blurRadius: 30),
+                  ],
+                  borderRadius: BorderRadius.circular(50),
+                ),
+                child: ClipOval(
+                  child: Image.asset(
+                    'assets/images/pic.png',
+                    fit: BoxFit.cover,
+                    width: 70,
+                    height: 70,
+                  ),
                 ),
               ),
             ),
@@ -58,12 +70,12 @@ _buildItemWidget(context, app) {
           )
         ],
       ),
-    ),
-  );
-}
+    );
+  }
 
-_changeScreen(context, app) {
-  print(app.toString());
-//    Navigator.push(context,
-//        MaterialPageRoute(builder: (BuildContext context) => WebViewPage()));
+  _changeScreen(QuickAppInfo app) {
+    print(app.toString());
+    Navigator.push(context,
+        MaterialPageRoute(builder: (BuildContext context) => WebViewPage(app.targetUrl, app.name)));
+  }
 }

@@ -1,4 +1,5 @@
-import 'file:///D:/workspace/flt/demo/myflutter/lib/dart/test_abstract_people.dart';
+
+import 'package:kborid_flutter/dart/test_abstract_people.dart';
 
 class TestPeople with People {
   @override

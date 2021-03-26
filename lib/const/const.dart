@@ -1,3 +1,3 @@
 class Const {
-  static const List titles = ["狱务公开", "亲属公开", "应用中心", "个人设置"];
+  static const List titles = ["推荐新闻", "新闻圈", "应用中心", "用户中心"];
 }

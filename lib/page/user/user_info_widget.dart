@@ -1,5 +1,5 @@
-import 'package:kborid_flutter/pojo/user_info.dart';
 import 'package:flutter/material.dart';
+import 'package:kborid_flutter/pojo/user_info.dart';
 
 class UserInfoListWidget extends StatefulWidget {
   final UserInfo _userInfo;

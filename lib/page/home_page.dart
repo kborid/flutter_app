@@ -1,9 +1,9 @@
+import 'package:flutter/material.dart';
 import 'package:kborid_flutter/const/const.dart';
 import 'package:kborid_flutter/page/main/app_main_page.dart';
 import 'package:kborid_flutter/page/user/user_main_page.dart';
 import 'package:kborid_flutter/pojo/user_info.dart';
 import 'package:kborid_flutter/widget/custom_page.dart';
-import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -33,7 +33,7 @@ class CustomAppState extends State<HomePage> {
               label: Const.titles[0],
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.phonelink),
+              icon: Icon(Icons.radio_outlined),
               label: Const.titles[1],
             ),
             BottomNavigationBarItem(

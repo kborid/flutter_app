@@ -9,16 +9,16 @@
             android:src="@mipmap/ic_bg" />
     </item>
     <item
-        android:width="140dp"
-        android:height="140dp"
+        android:width="100dp"
+        android:height="100dp"
         android:gravity="center_horizontal"
         android:top="100dp">
-        <bitmap android:src="@mipmap/login_logo" />
+        <bitmap android:src="@mipmap/ic_launcher" />
     </item>
     <item
         android:height="60dp"
         android:gravity="center_horizontal"
-        android:top="300dp">
+        android:top="240dp">
         <bitmap android:src="@mipmap/login_text" />
     </item>
 </layer-list>

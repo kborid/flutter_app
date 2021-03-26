@@ -3,9 +3,13 @@ import 'package:flutter_webview_plugin/flutter_webview_plugin.dart';
 import 'package:http/http.dart' as http;
 
 class WebViewPage extends StatefulWidget {
+  var title, url;
+
+  WebViewPage(this.url, [this.title]);
+
   @override
   State<StatefulWidget> createState() {
-    return WebViewWidgetState();
+    return WebViewWidgetState(this.url, this.title);
   }
 }
 
@@ -13,12 +17,14 @@ class WebViewWidgetState extends State<WebViewPage>
     with SingleTickerProviderStateMixin {
   FlutterWebviewPlugin flutterWebViewPlugin = FlutterWebviewPlugin();
 
-  var title = "";
   TabController controller;
   var choiceIndex = 0;
+  var title = '', url = 'http://www.baidu.com';
+
+  WebViewWidgetState(this.url, [this.title]);
 
   //获取h5页面标题
-  Future<String> getWebTitle() async {
+  Future<String> getWebTitle2() async {
     String script = 'window.document.title';
     var title = await flutterWebViewPlugin.evalJavascript(script);
     setState(() {
@@ -28,9 +34,9 @@ class WebViewWidgetState extends State<WebViewPage>
   }
 
   //获取h5页面标题
-  Future<String> getWebTitle2({String url}) async {
+  Future<String> getWebTitle({String url}) async {
     var client = http.Client();
-    client.get(url).then((response) {
+    client.get(Uri.parse(url)).then((response) {
       String title = RegExp(
               r"<[t|T]{1}[i|I]{1}[t|T]{1}[l|L]{1}[e|E]{1}(\s.*)?>([^<]*)</[t|T]{1}[i|I]{1}[t|T]{1}[l|L]{1}[e|E]{1}>")
           .stringMatch(response.body);
@@ -42,6 +48,7 @@ class WebViewWidgetState extends State<WebViewPage>
       print("####################  " + title);
     }).catchError((error) {
       print(error);
+      getWebTitle2();
     }).whenComplete(
       client.close,
     );
@@ -71,26 +78,32 @@ class WebViewWidgetState extends State<WebViewPage>
      */
     flutterWebViewPlugin.onUrlChanged.listen((String url) {
       print("########### url=" + url);
+      this.url = url;
     });
   }
 
   @override
   Widget build(BuildContext context) {
     return WebviewScaffold(
-      url: "https://www.baidu.com",
-      //默认加载地址
-//      appBar: AppBar(
-//        title: Text(title),
-//        backgroundColor: Colors.grey,
-//        leading: GestureDetector(
-//          child: Icon(Icons.arrow_back),
-//          onTap: () {
-//            flutterWebViewPlugin.goBack();
-//          },
-//        ),
-//      ),
+      appBar: AppBar(
+        title: Text(title),
+        backgroundColor: Colors.grey,
+        leading: GestureDetector(
+          child: Icon(Icons.arrow_back),
+          onTap: () {
+            flutterWebViewPlugin.canGoBack().then((can) {
+              if (can) {
+                flutterWebViewPlugin.goBack();
+              } else {
+                Navigator.pop(context);
+              }
+            });
+          },
+        ),
+      ),
       scrollBar: false,
       withZoom: false,
+      url: url,
     );
   }
 
