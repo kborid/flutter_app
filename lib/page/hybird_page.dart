@@ -64,13 +64,6 @@ class _HybridMainPageState extends State<HybridMainPage> {
 
   _tap() {
     TtPlugin.test;
-    TtPlugin.platformVersion.then((ret) {
-      print("ret = ${ret}");
-      print("out setState platform = ${platform}");
-      setState(() {
-        platform = ret;
-        print("in setState platform = ${platform}");
-      });
-    });
+    TtPlugin.testMethod();
   }
 }

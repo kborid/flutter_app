@@ -1,5 +1,7 @@
 import 'dart:async';
 
+import 'package:flutter/services.dart';
+import 'package:flutter_kborid_plugin/flutter_kborid_plugin.dart';
 import 'package:kborid_flutter/page/home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:dio/dio.dart';
@@ -21,8 +23,8 @@ class _TestPageState extends State<TestPage> {
   @override
   void initState() {
     Future.delayed(Duration(seconds: 2), initPlatformState);
-    loadData();
-    loadDataDio();
+    _loadData();
+    _loadDataDio();
     WidgetsBinding.instance.addPostFrameCallback(_buildCompleted);
     super.initState();
   }
@@ -31,14 +33,20 @@ class _TestPageState extends State<TestPage> {
     Overlay.of(context).insert(OverlayEntry(builder: (context) {
       return OverlayWidget();
     }));
+    _printInfo();
   }
 
-  loadData() async {
+  _printInfo() {
+    print('padding top ${MediaQuery.of(context).padding.top}');
+    print('padding bottom ${MediaQuery.of(context).padding.bottom}');
+  }
+
+  _loadData() async {
     var response = await http.Client().get(Uri.parse(url));
     print(response.body.toString());
   }
 
-  loadDataDio() async {
+  _loadDataDio() async {
     var response = await new Dio().get(url);
     print(response.data.toString());
   }
@@ -49,12 +57,12 @@ class _TestPageState extends State<TestPage> {
 
     String platformVersion = '~~~unknown~~';
     // Platform messages may fail, so we use a try/catch PlatformException.
-    // try {
-    //   platformVersion = await /*FlutterTestPlugin.platformVersion*/ TestPlugin
-    //       .platformVersion;
-    // } on PlatformException {
-    //   platformVersion = 'Failed to get platform version.';
-    // }
+    try {
+      platformVersion =
+          await FlutterKboridPlugin.platformVersion;
+    } on PlatformException {
+      platformVersion = 'Failed to get platform version.';
+    }
 
     // If the widget was removed from the tree while the asynchronous platform
     // message was in flight, we want to discard the reply rather than calling
@@ -73,8 +81,9 @@ class _TestPageState extends State<TestPage> {
         title: Text(_platformVersion),
         leading: Container(
           child: ElevatedButton(
-            onPressed: (){},
-            style: ButtonStyle(backgroundColor: MaterialStateProperty.all(Colors.indigo)),
+            onPressed: () {},
+            style: ButtonStyle(
+                backgroundColor: MaterialStateProperty.all(Colors.indigo)),
             child: Icon(Icons.arrow_back),
           ),
         ),
@@ -156,9 +165,5 @@ class _TestPageState extends State<TestPage> {
               Navigator.of(context).push(MaterialPageRoute(
                   builder: (BuildContext context) => HomePage()))
             });
-  }
-
-  _backClick() {
-    print("back click");
   }
 }
