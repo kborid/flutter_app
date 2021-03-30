@@ -4,7 +4,7 @@ class QuickAppInfo {
   var _targetUrl;
 
   QuickAppInfo(this._name,
-      [this._targetUrl = "http://www.baidu.com",
+      [this._targetUrl = "assets/htmls/index.html",
       this._iconUrl =
           "http://pic32.nipic.com/20130813/3347542_160503703000_2.jpg"]);
 

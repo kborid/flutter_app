@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter_webview_plugin/flutter_webview_plugin.dart';
 import 'package:http/http.dart' as http;
@@ -61,7 +62,7 @@ class WebViewWidgetState extends State<WebViewPage>
         .listen((WebViewStateChanged webViewState) async {
       switch (webViewState.type) {
         case WebViewState.finishLoad:
-          handleJs();
+          // handleJs();
           getWebTitle();
           break;
         case WebViewState.shouldStart:
@@ -104,7 +105,23 @@ class WebViewWidgetState extends State<WebViewPage>
       scrollBar: false,
       withZoom: false,
       url: url,
+      withLocalUrl: true,
+      withJavascript: true,
+      javascriptChannels: <JavascriptChannel>[
+        JavascriptChannel(
+            name: 'aa', onMessageReceived: (onMessageReceived) {}),
+        JavascriptChannel(
+            name: 'bb', onMessageReceived: (onMessageReceived) {}),
+        JavascriptChannel(
+            name: 'cc', onMessageReceived: (onMessageReceived) {}),
+      ].toSet(),
     );
+  }
+
+  _getUrls() async {
+    Uri.dataFromString(url,
+            mimeType: 'text/html', encoding: Encoding.getByName('utf-8'))
+        .toString();
   }
 
   @override
